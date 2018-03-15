@@ -1,4 +1,4 @@
-# <img src="src/assets/img/logo.png" width="45" align="left">&nbsp;UNAN-Leon Application
+# <img src="src/assets/img/logo.png" width="45" align="left">&nbsp;UNAN-Leon Unofficial Application
 
 > Unofficial [UNAN-Leon](http://www.unan.leon.edu.ni) Desktop application.
 
