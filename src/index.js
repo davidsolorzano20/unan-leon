@@ -42,7 +42,8 @@ function createWindow () {
 	const mainWindowState = windowStateKeeper({
 		defaultWidth: 1024,
 		defaultHeight: 700,
-	})
+	});
+
 	mainWindow = new BrowserWindow({
 		width: mainWindowState.width,
 		height: mainWindowState.height,
@@ -54,14 +55,10 @@ function createWindow () {
 		titleBarStyle: 'hidden',
 		backgroundColor: '#ffffff',
 		autoHideMenuBar: true,
-		webPreferences: {
-			preload: path.join(__dirname, 'menu/actions.js'),
-			plugins: false,
-		}
 	});
 
 	mainWindow.on('close', function (e) {
-		if (process.platform == 'darwin' && !isQuitting) {
+		if (process.platform === 'darwin' && !isQuitting) {
 			e.preventDefault();
 			mainWindow.hide();
 		}
@@ -71,7 +68,7 @@ function createWindow () {
 	});
 
 	mainWindow.loadURL(`file://${__dirname}/index.html`)
-//	mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 
 	mainWindow.webContents.on('new-window', (e, url) => {
 		e.preventDefault();

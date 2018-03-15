@@ -1,13 +1,15 @@
 const ipc = require('electron').ipcRenderer;
+const $ = require('jquery');
 
 ipc.on('unanleon', function () {
 	const resp = document.querySelector('a[ng-href="#/website/unanleon.edu.ni"], a[href="#/website/unanleon.edu.ni"]');
-	resp.click();
+	$(resp).click();
 });
 
 ipc.on('matricula', function () {
-	const resp = document.querySelector('a[ng-href="#/website/matricula.unanleon.edu.ni"], a[href="#/website/matricula.unanleon.edu.ni"]');
-	resp.click();
+	document.querySelector('a[ng-href="#/website/matricula.unanleon.edu.ni"], a[href="#/website/matricula.unanleon.edu.ni"]').onclick = function() {
+		alert('bla bla');
+	};
 });
 
 ipc.on('componentes', function () {

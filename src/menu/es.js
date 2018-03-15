@@ -105,7 +105,7 @@ const darwinTpl = [
 	{
 		label: 'Ver',
 		submenu: [
-			{
+			/*{
 				label: 'Matricula en Linea',
 				accelerator: 'CmdOrCtrl+1',
 				click: function () {
@@ -156,7 +156,7 @@ const darwinTpl = [
 			},
 			{
 				type: 'separator'
-			},
+			},*/
 			{
 				label: 'Reload',
 				accelerator: 'CmdOrCtrl+R',
@@ -254,7 +254,7 @@ const linuxTpl = [
 	{
 		label: 'Ver',
 		submenu: [
-			{
+			/*{
 				label: 'Matricula en Linea',
 				accelerator: 'CmdOrCtrl+1',
 				click: function () {
@@ -305,7 +305,7 @@ const linuxTpl = [
 			},
 			{
 				type: 'separator'
-			},
+			},*/
 			{
 				label: 'Reload',
 				accelerator: 'CmdOrCtrl+R',
