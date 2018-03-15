@@ -1,0 +1,45 @@
+{
+  "name": "unanleon",
+  "appId": "com.thunderweb.unanleon",
+  "productName": "UNAN-León App",
+  "version": "1.1.0",
+  "author": "Luis Solórzano <luisnic20@gmail.com>",
+  "copyright": "Thunder Web",
+  "description": "UNAN-León Application by created Luis Solórzano",
+  "license": "MIT",
+  "main": "src/index.js",
+  "homepage": "./",
+  "private": true,
+  "keywords": [
+    "Unan",
+    "Notas",
+    "Matricula",
+    "Becas",
+    "Network",
+    "Leon"
+  ],
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "electron": "^1.8.3",
+    "electron-builder": "^19.49.4",
+    "electron-notifications": "^1.0.0",
+    "electron-packager": "^10.1.0",
+    "electron-prebuilt": "^1.4.13",
+    "electron-window-state": "^4.1.1",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "mobx": "^3.4.1",
+    "mobx-react-router": "^4.0.1",
+    "react": "^16.2.0",
+    "react-detect-offline": "^1.0.6",
+    "react-dom": "^16.2.0",
+    "react-router": "^3.2.0"
+  },
+  "scripts": {
+    "app": "electron src/index.js",
+    "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns"
+  }
+}
