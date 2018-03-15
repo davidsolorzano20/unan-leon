@@ -2,7 +2,7 @@
 
 > Unofficial [UNAN-Leon](http://www.unan.leon.edu.ni) Desktop application.
 
-[![](src/assets/img/screen.png)](https://github.com/nurtext/active-collab-desktop/releases/latest)
+[![](src/assets/img/screen.png)](https://github.com/davidsolorzano20/unan-leon/releases/latest)
 
 *Supported platforms: Mac OS X 10.8+, Windows, Linux*
 
