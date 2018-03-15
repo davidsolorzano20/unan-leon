@@ -41,6 +41,11 @@
   },
   "scripts": {
     "app": "electron src/index.js",
-    "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns"
+    "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns",
+    "build-linux": "electron-packager . UNAN-León-Application --overwrite --out=Application --no-prune --platform=linux --arch=x64 --app-bundle-id=com.github.davidsolorzano20.unan-leon --app-version=$npm_package_version --version=$npm_package_electronVersion && cd \"dist/$npm_package_name-linux-x64/\" && zip -ryq9 \"../$npm_package_name-linux-$npm_package_version.zip\" *",
+    "build-win32": "electron-packager . UNAN-León-Application --overwrite --out=Application --no-prune --platform=win32 --arch=ia32 --icon=src/assets/img/logo.ico --version=$npm_package_electronVersion --version-string.ProductName=\"$npm_package_productName\" --version-string.FileDescription=\"$npm_package_description\" --version-string.LegalCopyright=\"$npm_package_license\" --version-string.ProductVersion=$npm_package_version && cd \"dist/$npm_package_name-win32-ia32/\" && mv $npm_package_name.exe \"$npm_package_productName.exe\" && zip -ryq9 \"../$npm_package_name-win-ia32-$npm_package_version.zip\" *",
+    "build-win64": "electron-packager . UNAN-León-Application --overwrite --out=Application --no-prune --platform=win32 --arch=x64 --icon=src/assets/img/logo.ico --version=$npm_package_electronVersion --version-string.ProductName=\"$npm_package_productName\" --version-string.FileDescription=\"$npm_package_description\" --version-string.LegalCopyright=\"$npm_package_license\" --version-string.ProductVersion=$npm_package_version && cd \"dist/$npm_package_name-win32-x64/\" && mv $npm_package_name.exe \"$npm_package_productName.exe\" && zip -ryq9 \"../$npm_package_name-win-x64-$npm_package_version.zip\" *",
+    "build-win": "npm run build-win32 && npm run build-win64"
+
   }
 }
