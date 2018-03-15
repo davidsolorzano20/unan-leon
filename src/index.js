@@ -68,7 +68,7 @@ function createWindow () {
 	});
 
 	mainWindow.loadURL(`file://${__dirname}/index.html`)
-	mainWindow.webContents.openDevTools();
+//	mainWindow.webContents.openDevTools();
 
 	mainWindow.webContents.on('new-window', (e, url) => {
 		e.preventDefault();
