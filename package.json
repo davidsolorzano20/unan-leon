@@ -28,7 +28,9 @@
     "electron-notifications": "^1.0.0",
     "electron-packager": "^10.1.0",
     "electron-prebuilt": "^1.4.13",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-window-state": "^4.1.1",
+    "electron-winstaller": "^2.6.4",
     "gulp": "^3.9.1",
     "gulp-less": "^3.1.0",
     "gulp-sourcemaps": "^2.6.4",
@@ -45,6 +47,8 @@
     "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns",
     "linux": "electron-packager . UNAN-León-Application --platform linux --arch x64 --out Application/",
     "deb64": "electron-installer-debian --src Application/UNAN-León-Application-linux-x64/ --dest Application/installers/ --arch amd64",
+    "win64": "electron-packager . UNAN-León-Application --overwrite --platform win32 --arch x64 --out=Application",
+    "linux64": "node installers/linux64.js",
     "build-win32": "electron-packager . UNAN-León-Application --overwrite --out=Application --no-prune --platform=win32 --arch=ia32 --icon=src/assets/img/logo.ico --version=$npm_package_electronVersion --version-string.ProductName=\"$npm_package_productName\" --version-string.FileDescription=\"$npm_package_description\" --version-string.LegalCopyright=\"$npm_package_license\" --version-string.ProductVersion=$npm_package_version && cd \"Application/$npm_package_name-win32-ia32/\" && mv $npm_package_name.exe \"$npm_package_productName.exe\" && zip -ryq9 \"../$npm_package_name-win-ia32-$npm_package_version.zip\" *",
     "build-win64": "electron-packager . UNAN-León-Application --overwrite --out=Application --no-prune --platform=win32 --arch=x64 --icon=src/assets/img/logo.ico --version=$npm_package_electronVersion --version-string.ProductName=\"$npm_package_productName\" --version-string.FileDescription=\"$npm_package_description\" --version-string.LegalCopyright=\"$npm_package_license\" --version-string.ProductVersion=$npm_package_version && cd \"Application/$npm_package_name-win32-x64/\" && mv $npm_package_name.exe \"$npm_package_productName.exe\" && zip -ryq9 \"../$npm_package_name-win-x64-$npm_package_version.zip\" *",
     "build-win": "npm run build-win32 && npm run build-win64"
