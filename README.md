@@ -10,7 +10,7 @@
 
 ### Mac OS X
 
-[**Download**](https://github.com/davidsolorzano20/unan-leon/releases/latest), unzip, and move `Active Collab Desktop.app` to the `/Applications` directory.
+[**Download**](https://github.com/davidsolorzano20/unan-leon/releases/latest), unzip, and move `UNAN-Leon-Application.app` to the `/Applications` directory.
 
 ### Windows
 
