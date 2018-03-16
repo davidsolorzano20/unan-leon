@@ -78,10 +78,6 @@ function createWindow () {
 		shell.openExternal(url);
 	});
 
-	if (process.platform !== 'darwin') {
-		mainWindow.isMaximized();
-	}
-
 	mainWindowState.manage(mainWindow);
 	return mainWindow;
 }
