@@ -76,7 +76,11 @@ function createWindow () {
 	mainWindow.webContents.on('new-window', (e, url) => {
 		e.preventDefault();
 		shell.openExternal(url);
-	})
+	});
+
+	if (process.platform !== 'darwin') {
+		mainWindow.isMaximized();
+	}
 
 	mainWindowState.manage(mainWindow);
 	return mainWindow;
