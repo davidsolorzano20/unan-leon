@@ -1,18 +1,18 @@
 html, body {
-	background: linear-gradient(#145777, #2780ab);
-	color: #ffffff;
-	font-family: 'Raleway', sans-serif;
+	background: @color-primary-bg;
+	color: @color-primary-text;
+	font-family: @font-family-unan;
 	font-weight: 100;
-	height: 100vh;
+	height: @display-full-height;
 	margin: 0;
 }
 
 .window-draggable {
-	position: absolute;
-	width: 100%;
+	position: @position-absolute;
+	width: @display-full-width;
 	top: 0px;
 	left: 0px;
-	height: 35px;
+	height: @info-bar-height;
 	pointer-events: none;
 	-webkit-app-region: drag;
 	z-index: 9999;
@@ -24,29 +24,29 @@ html, body {
 
 .slogan {
 	bottom: 18px;
-	position: absolute;
+	position: @position-absolute;
 	font-size: 18px;
-	color: white;
+	color: @color-primary-text;
 }
 
 .home {
-	text-align: center;
-	position: absolute;
+	text-align: @text-align-center;
+	position: @position-absolute;
 	right: 20px;
 	bottom: 15px;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
-	background: #145777;
+	background: @color-btn-home;
 	i {
 		padding: 13px;
-		color: white;
+		color: @color-primary-text;
 	}
 }
 
 webview {
-	width: 100%;
-	height: 100vh;
+	width: @display-full-width;
+	height: @display-full-height;
 }
 
 .full-height {
@@ -54,31 +54,31 @@ webview {
 }
 
 .flex-center {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+	align-items: @text-align-center;
+	display: @display-flex;
+	justify-content: @text-align-center;
 }
 
 .position-ref {
-	position: relative;
+	position: @position-relative;
 }
 
 .top-right {
-	position: absolute;
+	position: @position-absolute;
 	right: 10px;
 	top: 18px;
 }
 
 .content {
-	text-align: center;
+	text-align: @text-align-center;
 }
 
 .title {
-	font-size: 54px;
+	font-size: @title-size;
 }
 
 .links > a {
-	color: white;
+	color: @color-primary-text;
 	padding: 0 15px;
 	font-size: 16px;
 	font-weight: 600;
@@ -91,7 +91,7 @@ webview {
 .links2 {
 	margin-top: 20px;
 	a {
-		color: white;
+		color: @color-primary-text;
 		padding: 0 15px;
 		font-size: 16px;
 		font-weight: 600;
