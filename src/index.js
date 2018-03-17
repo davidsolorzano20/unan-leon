@@ -2,14 +2,17 @@ const electron = require('electron');
 const app = electron.app;
 const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
-const protocol = electron.protocol;
 const shell = electron.shell;
 const path = require('path');
 const fs = require('fs');
+const fs_extra = require('fs-extra');
 const windowStateKeeper = require('electron-window-state');
 
 let mainWindow;
 let isQuitting = false;
+
+fs_extra.ensureDir(path.join(app.getPath('userData'), 'version'));
+fs_extra.emptyDirSync(path.join(app.getPath('userData'), 'version', 'temp'));
 
 if (handleSquirrelEvent(app)) {
 	return;
@@ -55,9 +58,8 @@ function createWindow () {
 		x: mainWindowState.x,
 		y: mainWindowState.y,
 		icon: process.platform === 'linux' && path.join(__dirname, 'assets/img/logo.png'),
-		titleBarStyle: (process.platform === 'darwin' ? 'hidden-inset' : 'center'),
+		titleBarStyle: 'customButtonsOnHover',
 		backgroundColor: '#ffffff',
-		autoHideMenuBar: (process.platform === 'darwin'),
 	});
 
 	mainWindow.on('close', function (e) {
@@ -70,8 +72,16 @@ function createWindow () {
 		}
 	});
 
-	mainWindow.loadURL(`file://${__dirname}/index.html`)
-//	mainWindow.webContents.openDevTools();
+	const loader_app = path.join(app.getPath('userData'), 'version/src');
+	if (fs.existsSync(loader_app)) {
+		console.log(loader_app)
+		mainWindow.loadURL(`file://${loader_app}/index.html`);
+	}  else {
+		mainWindow.loadURL(`file://${__dirname}/index.html`)
+	}
+
+//	mainWindow.loadURL(`file://${__dirname}/index.html`)
+	mainWindow.webContents.openDevTools();
 
 	mainWindow.webContents.on('new-window', (e, url) => {
 		e.preventDefault();
@@ -165,3 +175,5 @@ function handleSquirrelEvent (application) {
 			return true
 	}
 }
+
+app.setAsDefaultProtocolClient('unanleon');

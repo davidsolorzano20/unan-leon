@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=UNAN-León Desktop App
+Exec=/usr/lib/unanleon/unan
+Terminal=false
+Type=Application
+Icon=/usr/lib/unanleon/logo.png
+Categories=GNOME;GTK;Network;
+StartupNotify=true

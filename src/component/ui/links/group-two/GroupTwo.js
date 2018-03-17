@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default class GroupTwo extends Component {
 	render () {
 		return (
-			<div className="links2">
+			<div className="group-two">
 				<Link to={'/website/https@!solicitudbeca.unanleon.edu.ni'}>Solicitud de Becas</Link>
 				<Link to={'/website/https@!portalestudiantes.unanleon.edu.ni-consulta_estudiantes.php'}>Consulta de Notas</Link>
 				<Link to={'/website/https@!portalestudiantes.unanleon.edu.ni-horarios'}>Horarios</Link>
