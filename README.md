@@ -23,3 +23,8 @@
 ## License
 
 MIT © [Luis Solorzano](http://github.com/davidsolorzano20)
+
+## Contribution
+
+`npm install` &&
+`npm run app`
