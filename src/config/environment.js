@@ -2,5 +2,5 @@
  * Environment by Luis Solorzano.
  */
 
-export const DEV = true;
-export const PROD = false;
+export const DEV = false;
+export const PROD = true;
