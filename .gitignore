@@ -25,4 +25,4 @@ Application/
 version/
 plugins
 build
-build_version
+build:version

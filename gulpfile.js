@@ -55,7 +55,7 @@ gulp.task('version', function () {
 })
 
 gulp.task('app', function () {
-  return gulp.src([path, '!./node_modules/**'], {base: path})
+  return gulp.src([path+'**', '!./node_modules/**', '!./gulpfile.js', '!./package-lock.json', '!./sweetalert.min.js', '!./electron-builder.yml', '!./.gitignore', '!./README.md'], {base: path})
     .pipe(gulp.dest(path + build))
 })
 

@@ -57,7 +57,6 @@ function createWindow () {
     x: mainWindowState.x,
     y: mainWindowState.y,
     icon: process.platform === 'linux' && path.join(__dirname, 'assets/img/logo.png'),
-    titleBarStyle: 'customButtonsOnHover',
     backgroundColor: '#ffffff',
   })
 
@@ -80,7 +79,7 @@ function createWindow () {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   }
 
-  mainWindow.webContents.openDevTools()
+ // mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('new-window', (e, url) => {
     e.preventDefault()
     shell.openExternal(url)
@@ -91,17 +90,7 @@ function createWindow () {
 }
 
 app.on('ready', function () {
-  locale = app.getLocale()
   mainWindow = createWindow()
-
-  switch (locale) {
-    case 'es':
-      Menu.setApplicationMenu(require('./menu/es'))
-      break
-
-    default:
-      Menu.setApplicationMenu(require('./menu/es'))
-  }
 })
 
 app.on('window-all-closed', function () {

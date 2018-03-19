@@ -1,5 +1,5 @@
 directories:
-  app: ./
+  app: ./build
   output: ./out
 
 appId: "com.luis.unanleon"
@@ -10,7 +10,7 @@ compression: maximum
 
 mac:
   category: public.app-category.productivity
-  icon: ./builder-app/resources/logo.icns
+  icon: ./build/builder-app/resources/logo.icns
 
 dmg:
   icon: ./builder-app/resources/logo.icns
@@ -18,11 +18,11 @@ dmg:
   contents: [{x: 380, y: 240, type: link, path: /Applications}, {x: 122, y: 240, type: file}]
 
 win:
-  icon: ./builder-app/resources/logo.ico
+  icon: ./build/builder-app/resources/logo.ico
   target: nsis
 
 linux:
-  icon: ./builder-app/resources/icons
+  icon: ./build/builder-app/resources/icons
   category: Network;
   executableName: unan
   synopsis: "UNAN-Leon Unofficial App."
