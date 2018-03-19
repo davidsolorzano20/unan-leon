@@ -11,6 +11,7 @@ import App from './component/app/App'
 import Websites from './component/app/Websites'
 import * as firebase from 'firebase'
 import ServerApi from './api/server/ServerApi'
+import './menu/menu'
 
 const config = {
   apiKey: 'AIzaSyAXsZvK07C5oIseGS77tQx5J2tUl6a3a9k',
