@@ -63,8 +63,7 @@
   "scripts": {
     "app": "electron src/index.js",
     "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns",
-    "linux32": "electron-packager . unan --overwrite --no-prune --platform=linux --out=out",
-    "linux-deb32": "electron-installer-debian --src out/unan-linux-ia32/ --dest out/installers/ --arch ia32",
+    "linux": "electron-packager . unan --overwrite --no-prune --platform=linux --out=out",
     "build": "node_modules/.bin/electron-builder --publish onTag"
   }
 }
