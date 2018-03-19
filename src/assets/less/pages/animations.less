@@ -1,0 +1,51 @@
+/**
+ * By Luis Solorzano
+ */
+
+.swal-icon--error__line {
+	background-color: @color-title-modal;
+}
+
+.swal-icon--error {
+	border-color: @display-inherit;
+	-webkit-animation: @display-inherit;
+	animation: @display-inherit;
+}
+
+.swal-icon--error__line--top {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	left: 20px;
+	top: 29px;
+	width: 43px;
+}
+
+.swal-icon--error__line--left {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	left: 14px;
+	width: 34px;
+}
+
+.swal-icon--error__line--right {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	right: 11px;
+	width: 34px;
+}
+
+.swal-overlay--show-modal {
+	pointer-events: @display-none;
+}
+
+.swal-icon--error__x-mark {
+	position: relative;
+	display: @display-block;
+	-webkit-animation: download-spin infinite 1.2s alternate;
+	animation: download-spin infinite 1.2s alternate;
+}
+
+@keyframes download-spin {
+	from { margin-top: -10px; }
+	to { margin-top: 35px; }
+}

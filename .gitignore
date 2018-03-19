@@ -22,3 +22,7 @@ yarn-error.log*
 package-lock.json
 .idea/
 Application/
+version/
+plugins
+build
+build_version

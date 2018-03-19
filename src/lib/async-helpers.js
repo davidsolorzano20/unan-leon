@@ -1,3 +1,7 @@
-export function sleep(ms = 0) {
-  return new Promise(r => setTimeout(r, ms));
+/**
+ * By Luis Solorzano
+ */
+
+export function sleep (ms = 0) {
+  return new Promise(r => setTimeout(r, ms))
 }

@@ -1,7 +1,11 @@
+/**
+ * By Luis Solorzano
+ */
+
 html, body {
   background: @color-primary-bg;
   color: @color-primary-text;
-  font-family: @font-family-unan;
+  font-family: @font-family-roboto;
   font-weight: @font-weight-100;
   height: @display-full-height;
   margin: 0;
@@ -22,10 +26,11 @@ html, body {
   }
 
   .slogan {
-    bottom: 18px;
+    bottom: @font-font-size-18;
     position: @position-absolute;
-    font-size: 18px;
+    font-size: 15px;
     color: @color-primary-text;
+    font-weight: @font-weight-lighter;
   }
 
   .home {
@@ -65,7 +70,7 @@ html, body {
   .top-right {
     position: @position-absolute;
     right: 10px;
-    top: 18px;
+    top: @font-font-size-18;
   }
 
   .content {
@@ -74,14 +79,20 @@ html, body {
 
   .title {
     font-size: @title-size;
+    font-weight: @font-weight-lighter;
   }
 
   .group-one > a {
     color: @color-primary-text;
     padding: 0 15px;
-    font-size: 16px;
-    font-weight: @font-weight-600;
+    font-size: @font-font-size-16;
+    font-weight: @font-weight-bolder;
     text-decoration: @text-decoration-none;
+    border-right: 1px solid;
+    &:nth-child(4) {
+      border-right: 1px solid transparent;
+    }
+
     &:hover {
       text-decoration: @text-decoration-underline;
     }
@@ -92,9 +103,14 @@ html, body {
     a {
       color: @color-primary-text;
       padding: 0 15px;
-      font-size: 16px;
-      font-weight: @font-weight-600;
+      font-size: @font-font-size-16;
+      font-weight: @font-weight-bolder;
       text-decoration: @text-decoration-none;
+      border-right: 1px solid;
+      &:nth-child(4) {
+        border-right: 1px solid transparent;
+      }
+
       &:hover {
         text-decoration: @text-decoration-underline;
       }
@@ -113,6 +129,9 @@ html, body {
     cursor: pointer;
     background: @color-transparent;
     color: @color-primary-text;
+		&:hover {
+			//background: @color-info-bar-success !important;
+		}
     i {
       font-weight: @font-weight-bold;
     }

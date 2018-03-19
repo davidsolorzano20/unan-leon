@@ -1,39 +1,64 @@
-'use strict';
-const gulp = require('gulp');
-const less = require('gulp-less');
-const sourcemaps = require('gulp-sourcemaps');
+/**
+ * By Luis Solorzano
+ */
 
-const input = './src/assets/less/style.less';
-const output = './src/assets/css';
+'use strict'
+const gulp = require('gulp')
+const less = require('gulp-less')
+const sourcemaps = require('gulp-sourcemaps')
+
+const path = './'
+const input = 'src/assets/less/style.less'
+const output = 'src/assets/css'
+const build = 'build'
+const build_app = 'build:version'
+const react = 'src'
 
 gulp.task('prod', function () {
-    return gulp
-        .src(input)
-        .pipe(less({
-            errLogToConsole: true,
-            outputStyle: 'compressed'
-        }))
-        .pipe(gulp.dest(output));
-});
+  return gulp
+    .src(input)
+    .pipe(less({
+      errLogToConsole: true,
+      outputStyle: 'compressed'
+    }))
+    .pipe(gulp.dest(output))
+})
 
 gulp.task('dev', function () {
-    return gulp
-        .src(input)
-        .pipe(sourcemaps.init())
-        .pipe(less({
-            errLogToConsole: true,
-            outputStyle: 'nested'
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(output));
-});
+  return gulp
+    .src(input)
+    .pipe(sourcemaps.init())
+    .pipe(less({
+      errLogToConsole: true,
+      outputStyle: 'nested'
+    }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(output))
+})
 
 gulp.task('watch', function () {
-    return gulp
-        .watch('./src/assets/less/**/*', ['prod'])
-        .on('change', function (event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
-});
+  return gulp
+    .watch('./src/assets/less/**/*', ['prod'])
+    .on('change', function (event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
+    })
+})
 
-gulp.task('default', ['prod']);
+gulp.task('src', function () {
+  return gulp.src([path + 'src/**/*', '!./src/index.js', '!./src/assets/less/**'])
+    .pipe(gulp.dest(path + build_app + '/' + react))
+})
+
+gulp.task('version', function () {
+  return gulp.src([path + '/*.json', '!./package-lock.json'])
+    .pipe(gulp.dest(path + build_app))
+})
+
+gulp.task('app', function () {
+  return gulp.src([path, '!./node_modules/**'], {base: path})
+    .pipe(gulp.dest(path + build))
+})
+
+gulp.task('build:version', ['src', 'version'])
+gulp.task('build:app', ['app'])
+gulp.task('default', ['prod'])

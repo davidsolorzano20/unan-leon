@@ -1,58 +1,125 @@
-import React from 'react';
-import { remote } from 'electron';
-import * as firebase from 'firebase';
-import tar from 'tar';
-import fs from 'fs-extra';
-import path from 'path';
-import { sleep } from '../../lib/async-helpers'
-import localStorage from 'mobx-localstorage';
-const { app } = remote;
-const fetch = remote.require('electron-fetch');
+/**
+ * By Luis Solorzano
+ */
 
-let os;
+import React from 'react'
+import { remote } from 'electron'
+import * as firebase from 'firebase'
+import tar from 'tar'
+import _fs from 'fs'
+import fs from 'fs-extra'
+import path from 'path'
+import swal from 'sweetalert'
+import localStorage from 'mobx-localstorage'
+import { SERVER_URL, VERSION_API } from '../../config/config'
+
+const fetch = remote.require('electron-fetch')
+
+let UpdateDirectory
+let packageRemove
+let local
+let online
+let archivePath
+let packages
+let version
 
 export default class ServerApi {
 
-	static Version() {
+	static Version () {
 		const db = firebase.database()
-		const version_app = db.ref().child('version');
+		const version_app = db.ref().child('version')
 		version_app.on('value', snap => {
-			localStorage.setItem('version', snap.val());
-		});
+			localStorage.setItem('version', snap.val())
+			version = snap.val()
+		})
 	}
 
-	static UpdateApp () {
-		try {
-			const UpdateDirectory = path.join(app.getPath('userData'), 'version');
-			const UpdateTempDirectory = path.join(UpdateDirectory, 'temp');
-			const archivePath = path.join(UpdateTempDirectory, 'versionapp.tar.gz');
-			fs.ensureDirSync(UpdateTempDirectory);
+	static NewPackageVersion () {
+		const db = firebase.database()
+		const package_app = db.ref().child('package')
+		package_app.on('value', snap => {
+			localStorage.setItem('package', snap.val())
+		})
+	}
 
-			fetch("https://github.com/davidsolorzano20/unan-leon/releases/download/v1.1.0/src.tar.gz")
+	static UpdateOnlineApp () {
+		swal({
+			title: 'Actualizando...',
+			text: '',
+			icon: 'error',
+			button: false
+		})
+		try {
+
+			local = path.join(__dirname, '../../../', 'version')
+			online = path.join(__dirname, '../../../../')
+
+			if (_fs.existsSync(local)) {
+				UpdateDirectory = local
+			} else {
+				UpdateDirectory = online
+			}
+
+			archivePath = path.join(UpdateDirectory, 'version.tar.gz')
+			packageRemove = path.join(UpdateDirectory, 'version.json')
+			packages = path.join(UpdateDirectory, version, 'version.json')
+			fs.ensureDirSync(UpdateDirectory)
+
+			fetch(`${SERVER_URL}/${VERSION_API}/download/${version}`, this.Request({
+				method: 'GET',
+			}))
 				.then(res => res.buffer())
 				.then(function (buffer) {
 					fs.writeFileSync(archivePath, buffer)
-					console.debug('Update downloaded');
+					console.debug('Update downloaded')
 
 					tar.x({
 						file: archivePath,
-						cwd: UpdateTempDirectory,
+						cwd: UpdateDirectory,
 						preservePaths: true,
 						unlink: true,
 						preserveOwner: false,
-						onwarn: x => console.log('warn', 'src', x),
-					});
+						onwarn: x => console.log('warn', version, x),
+					})
 
-					const newVersion = path.join(UpdateDirectory, "src");
-					fs.copySync(UpdateTempDirectory, newVersion);
-					//fs.remove(UpdateTempDirectory);
-					//fs.remove(path.join(UpdateDirectory, 'version.tar.gz'));
-					alert("Success")
-				});
+					fs.remove(path.join(UpdateDirectory, 'version.tar.gz'))
+					if (_fs.existsSync(packageRemove)) {
+						fs.remove(packageRemove)
+					}
+
+					swal({
+						title: 'Buen Trabajo!',
+						text: 'La Aplicación ha sido actualizada!',
+						icon: 'success',
+						button: 'Reiniciar Aplicación',
+					}).then(() => {
+						if (_fs.existsSync(packages)) {
+							fs.copy(packages, packageRemove)
+								.then(() => {
+									remote.app.relaunch()
+									remote.app.exit(0)
+								})
+								.catch(err => console.error(err))
+						}
+					})
+				})
 		} catch (err) {
-			console.error(err);
-			return false;
+			console.error(err)
 		}
+	}
+
+	static Request (options) {
+		const request = Object.assign(options, {
+			mode: 'cors',
+			headers: Object.assign({
+				'Content-Type': 'application/json',
+				'X-UNAN-Source': 'desktop',
+				'X-UNAN-platform': process.platform,
+				'X-UNAN-Timezone-Offset': new Date().getTimezoneOffset(),
+			}, options.headers),
+		})
+
+		return request
 	}
 
 }

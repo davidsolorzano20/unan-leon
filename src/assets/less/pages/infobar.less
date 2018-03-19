@@ -1,3 +1,7 @@
+/**
+ * By Luis Solorzano
+ */
+
 .info-bar {
 	top: 0;
 	position: @position-absolute;
@@ -11,7 +15,7 @@
 	box-shadow: @color-info-bar-shadow;
 
 	.info-bar__content {
-		font-weight: @font-weight-600;
+		font-weight: @font-weight-initial;
 		height: @height-auto;
 		.offline {
 			margin-left: 10px;
@@ -45,10 +49,6 @@
 			display: @display-inline-block;
 			margin-right: 5px;
 		}
-	}
-
-	&.info-bar--bottom {
-		order: 10;
 	}
 
 	&.info-bar--success {
@@ -85,5 +85,9 @@
 		a {
 			color: @color-primary-text;
 		}
+	}
+
+	.offline {
+		text-decoration: @display-none;
 	}
 }

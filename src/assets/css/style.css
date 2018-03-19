@@ -1,6 +1,9 @@
+/**
+ * By Luis Solorzano
+ */
 /*Component*/
 /**
- * Variable Overrides.
+ * Variable Overrides, By Luis Solorzano.
  */
 /*!
  * Font Awesome Pro 5.0.6 by @fontawesome - http://fontawesome.com
@@ -3237,11 +3240,14 @@
   font-family: Font Awesome\ 5 Pro;
   font-weight: 900;
 }
+/**
+ * By Luis Solorzano
+ */
 html,
 body {
   background: linear-gradient(#145777, #2780ab);
   color: #ffffff !important;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 100;
   height: 100vh;
   margin: 0;
@@ -3265,8 +3271,9 @@ html .slogan,
 body .slogan {
   bottom: 18px;
   position: absolute;
-  font-size: 18px;
+  font-size: 15px;
   color: #ffffff !important;
+  font-weight: lighter;
 }
 html .home,
 body .home {
@@ -3316,14 +3323,20 @@ body .content {
 html .title,
 body .title {
   font-size: 54px;
+  font-weight: lighter;
 }
 html .group-one > a,
 body .group-one > a {
   color: #ffffff !important;
   padding: 0 15px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bolder;
   text-decoration: none;
+  border-right: 1px solid;
+}
+html .group-one > a:nth-child(4),
+body .group-one > a:nth-child(4) {
+  border-right: 1px solid transparent;
 }
 html .group-one > a:hover,
 body .group-one > a:hover {
@@ -3338,8 +3351,13 @@ body .group-two a {
   color: #ffffff !important;
   padding: 0 15px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bolder;
   text-decoration: none;
+  border-right: 1px solid;
+}
+html .group-two a:nth-child(4),
+body .group-two a:nth-child(4) {
+  border-right: 1px solid transparent;
 }
 html .group-two a:hover,
 body .group-two a:hover {
@@ -3363,6 +3381,9 @@ html .btn-download i,
 body .btn-download i {
   font-weight: bold;
 }
+/**
+ * By Luis Solorzano
+ */
 .info-bar {
   top: 0;
   position: absolute;
@@ -3376,7 +3397,7 @@ body .btn-download i {
   box-shadow: 0 0 8px rgba(35, 33, 33, 0.97);
 }
 .info-bar .info-bar__content {
-  font-weight: 600;
+  font-weight: initial;
   height: auto;
 }
 .info-bar .info-bar__content .offline {
@@ -3408,9 +3429,6 @@ body .btn-download i {
   display: inline-block;
   margin-right: 5px;
 }
-.info-bar.info-bar--bottom {
-  order: 10;
-}
 .info-bar.info-bar--success {
   background: #5cb85c !important;
   color: #ffffff !important;
@@ -3438,4 +3456,118 @@ body .btn-download i {
 }
 .info-bar.info-bar--danger a {
   color: #ffffff !important;
+}
+.info-bar .offline {
+  text-decoration: none;
+}
+.swal-button {
+  background-color: #5cb85c !important;
+  color: #ffffff !important;
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 24px;
+  margin: 0;
+  width: 190px;
+  cursor: pointer;
+}
+.swal-button:focus,
+.swal-button:hover,
+.swal-button:active {
+  outline: none;
+  box-shadow: inherit;
+}
+.swal-title {
+  color: #009688 !important;
+  margin-bottom: 40px;
+}
+.swal-text {
+  font-size: 18px;
+  color: #607D8B !important;
+  font-weight: 600;
+}
+/**
+ * By Luis Solorzano
+ */
+.swal-icon--error__line {
+  background-color: #009688 !important;
+}
+.swal-icon--error {
+  border-color: inherit;
+  -webkit-animation: inherit;
+  animation: inherit;
+}
+.swal-icon--error__line--top {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  left: 20px;
+  top: 29px;
+  width: 43px;
+}
+.swal-icon--error__line--left {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 14px;
+  width: 34px;
+}
+.swal-icon--error__line--right {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  right: 11px;
+  width: 34px;
+}
+.swal-overlay--show-modal {
+  pointer-events: none;
+}
+.swal-icon--error__x-mark {
+  position: relative;
+  display: block;
+  -webkit-animation: download-spin infinite 1.2s alternate;
+  animation: download-spin infinite 1.2s alternate;
+}
+@keyframes download-spin {
+  from {
+    margin-top: -10px;
+  }
+  to {
+    margin-top: 35px;
+  }
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-ExtraBold.ttf');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans-ExtraBoldItalic.ttf');
+  font-weight: 800;
+  font-style: italic;
 }
