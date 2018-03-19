@@ -3,7 +3,6 @@
  */
 
 import React, { Component } from 'react'
-import ReactGA from 'react-ga';
 import Internet from '../infobar/Internet'
 import GroupOne from '../ui/links/group-one/GroupOne'
 import GroupTwo from '../ui/links/group-two/GroupTwo'
@@ -15,11 +14,6 @@ import { version, packages } from '../../../version.json'
 import ServerApi from '../../api/server/ServerApi'
 import localStorage from 'mobx-localstorage'
 import Package from '../infobar/Package'
-import fs from 'fs'
-import fse from 'fs-extra'
-import path from 'path'
-
-let remove
 
 export default class App extends Component {
   constructor () {
@@ -28,17 +22,9 @@ export default class App extends Component {
       version: '',
       packages: ''
     }
-		ReactGA.initialize('UA-114998845');
-		ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   componentDidMount () {
-    const version_after = (localStorage.getItem('version') - 1)
-		remove = path.join(__dirname, '../../../../'+version_after)
-    if (fs.existsSync(remove)) {
-			fse.remove(remove)
-		}
-
     ServerApi.Version()
     ServerApi.NewPackageVersion()
 
