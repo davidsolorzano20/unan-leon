@@ -1,5 +1,5 @@
 directories:
-  app: ./build
+  app: ./
   output: ./out
 
 appId: "com.luis.unanleon"
@@ -8,29 +8,29 @@ prune: false
 
 compression: maximum
 
-mac:
-  category: public.app-category.productivity
-  icon: ./build/builder-app/resources/logo.icns
+#mac:
+#  category: public.app-category.productivity
+#  icon: ./builder-app/resources/logo.icns
 
-dmg:
-  icon: ./builder-app/resources/logo.icns
-  iconSize: 128
-  contents: [{x: 380, y: 240, type: link, path: /Applications}, {x: 122, y: 240, type: file}]
+#dmg:
+ # icon: ./builder-app/resources/logo.icns
+  #iconSize: 128
+  #contents: [{x: 380, y: 240, type: link, path: /Applications}, {x: 122, y: 240, type: file}]
 
 win:
   icon: ./build/builder-app/resources/logo.ico
   target: nsis
 
-linux:
-  icon: ./build/builder-app/resources/icons
-  category: Network;
-  executableName: unan
-  synopsis: "UNAN-Leon Unofficial App."
-  description: "UNAN-Leon Unofficial Desktop App."
-  target:
-    - target: AppImage
-    - target: deb
-    - target: tar.gz
+#linux:
+ # icon: ./build/builder-app/resources/icons
+ # category: Network;
+ # executableName: unan
+ # synopsis: "UNAN-Leon Unofficial App."
+ # description: "UNAN-Leon Unofficial Desktop App."
+ # target:
+  #  - target: AppImage
+   # - target: deb
+    #- target: tar.gz
 
 nsis:
   perMachine: false
