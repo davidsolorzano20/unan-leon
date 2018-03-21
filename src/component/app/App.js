@@ -18,6 +18,7 @@ import Package from '../infobar/Package'
 import fs from 'fs'
 import fse from 'fs-extra'
 import path from 'path'
+import Notifications from '../notifications/Notifications'
 
 let remove
 

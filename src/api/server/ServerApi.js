@@ -12,6 +12,8 @@ import path from 'path'
 import swal from 'sweetalert'
 import localStorage from 'mobx-localstorage'
 import { SERVER_URL, VERSION_API } from '../../config/config'
+import Notifications from '../../component/notifications/Notifications'
+import { version} from '../../../version.json'
 
 const fetch = remote.require('electron-fetch')
 
@@ -21,7 +23,7 @@ let local
 let online
 let archivePath
 let packages
-let version
+let versionApp
 
 export default class ServerApi {
 
@@ -29,8 +31,20 @@ export default class ServerApi {
 		const db = firebase.database()
 		const version_app = db.ref().child('version')
 		version_app.on('value', snap => {
-			localStorage.setItem('version', snap.val())
-			version = snap.val()
+			if (version !== snap.val()) {
+				if (process.platform === 'win32') {
+					Notifications.win()
+				}
+				else if (process.platform === 'darwin') {
+					Notifications.macOS()
+				}
+				else {
+					Notifications.linux()
+				}
+
+				localStorage.setItem('version', snap.val())
+				versionApp = snap.val()
+			}
 		})
 	}
 
@@ -62,10 +76,10 @@ export default class ServerApi {
 
 			archivePath = path.join(UpdateDirectory, 'version.tar.gz')
 			packageRemove = path.join(UpdateDirectory, 'version.json')
-			packages = path.join(UpdateDirectory, version, 'version.json')
+			packages = path.join(UpdateDirectory, versionApp, 'version.json')
 			fs.ensureDirSync(UpdateDirectory)
 
-			fetch(`${SERVER_URL}/${VERSION_API}/download/${version}`, this.Request({
+			fetch(`${SERVER_URL}/${VERSION_API}/download/${versionApp}`, this.Request({
 				method: 'GET',
 			}))
 				.then(res => res.buffer())
@@ -79,7 +93,7 @@ export default class ServerApi {
 						preservePaths: true,
 						unlink: true,
 						preserveOwner: false,
-						onwarn: x => console.log('warn', version, x),
+						onwarn: x => console.log('warn', versionApp, x),
 					})
 
 					fs.remove(path.join(UpdateDirectory, 'version.tar.gz'))

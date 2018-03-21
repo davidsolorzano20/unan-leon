@@ -12,12 +12,13 @@ export default class WebView extends Component {
 
   render () {
     return (
-      <webview
-        src={this.props.src}
-        autosize={'on'}
-        useragent="Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko"
-        plugins={'true'}
-      />
+			<webview
+				name={'webview'}
+				src={url}
+				autosize={'on'}
+				useragent="Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko"
+				plugins={'true'}
+			/>
     )
   }
 }

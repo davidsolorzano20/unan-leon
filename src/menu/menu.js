@@ -51,7 +51,7 @@ const darwinTpl = [
 				label: 'Pagina UNAN-León',
 				accelerator: 'CmdOrCtrl+U',
 				click: function () {
-					remote.getCurrentWindow().loadURL("http://www.unanleon.edu.ni")
+					location.href = "#/website/http@!www.unanleon.edu.ni"
 				}
 			}
 		]
@@ -207,7 +207,7 @@ const linuxTpl = [
 				label: 'Pagina UNAN-Leon',
 				accelerator: 'CmdOrCtrl+U',
 				click: function () {
-					sendAction('unanleon')
+					location.href = "#/website/http@!www.unanleon.edu.ni"
 				}
 			}
 		]

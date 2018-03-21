@@ -32,13 +32,8 @@ export default class Websites extends Component {
     return (
       <span>
         <Internet/>
-        <webview
-					name={'webview'}
-					src={url}
-					autosize={'on'}
-					useragent="Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko"
-					plugins={'true'}
-				/>
+				<WebView
+					src={url}/>
 
 				<a className={'arrow-left'}><i className={'fal fa-arrow-left fa-lg'} onClick={this._back}/></a>
 				<a className={'arrow-right'}><i className={'fal fa-arrow-right fa-lg'} onClick={this._next}/></a>
