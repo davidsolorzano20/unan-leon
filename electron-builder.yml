@@ -21,11 +21,11 @@ win:
   target: nsis
 
 linux:
-  icon: ./build/builder-app/resources/icons
+  icon: ./builder-app/resources/icons
   category: Network;
   executableName: unan
-  synopsis: "UNAN-Leon Unofficial App."
-  description: "UNAN-Leon Unofficial Desktop App."
+  synopsis: "UNAN Unofficial App."
+  description: "UNAN Unofficial Desktop App."
   target:
     - target: AppImage
     - target: deb
@@ -36,5 +36,5 @@ nsis:
   oneClick: true
 
 protocols: 
-  name: UNAN-Leon Desktop App
+  name: UNAN Desktop App
   schemes: [unan]
