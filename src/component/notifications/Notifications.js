@@ -1,5 +1,6 @@
 import React from 'react'
 import appId, { ToastNotification } from 'electron-windows-notifications'
+import { version } from '../../../version'
 
 let notify
 
@@ -28,6 +29,18 @@ export default class Notifications {
 			body: 'Tienes una nueva Actualizacion',
 			hasReply: true
 		})
+	}
+
+	static notify () {
+		if (process.platform === 'win32') {
+			this.win()
+		}
+		else if (process.platform === 'darwin') {
+			this.macOS()
+		}
+		else {
+			this.linux()
+		}
 	}
 
 }

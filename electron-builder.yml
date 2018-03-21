@@ -2,9 +2,8 @@ directories:
   app: ./
   output: ./out
 
-appId: "com.luis.unanleon"
+appId: "com.thunderweb.unanleon"
 asar: false
-prune: false
 
 compression: maximum
 

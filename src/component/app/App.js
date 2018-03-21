@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga'
 import Internet from '../infobar/Internet'
 import GroupOne from '../ui/links/group-one/GroupOne'
 import GroupTwo from '../ui/links/group-two/GroupTwo'
@@ -23,56 +23,58 @@ import Notifications from '../notifications/Notifications'
 let remove
 
 export default class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      version: '',
-      packages: ''
-    }
-		ReactGA.initialize('UA-114998845');
-		ReactGA.pageview(window.location.pathname + window.location.search);
-  }
+	constructor () {
+		super()
+		this.state = {
+			version: '',
+			packages: ''
+		}
+		ReactGA.initialize('UA-114998845')
+		ReactGA.pageview(window.location.pathname + window.location.search)
+	}
 
-  componentDidMount () {
-    const version_after = (localStorage.getItem('version') - 1)
-		remove = path.join(__dirname, '../../../../'+version_after)
-    if (fs.existsSync(remove)) {
+	componentDidMount () {
+		const version_after = (localStorage.getItem('version') - 1)
+		remove = path.join(__dirname, '../../../../' + version_after)
+		if (fs.existsSync(remove)) {
 			fse.remove(remove)
 		}
 
-    ServerApi.Version()
-    ServerApi.NewPackageVersion()
+		ServerApi.Version()
+		ServerApi.NewPackageVersion()
 
-    if (version !== localStorage.getItem('version')) {
-      this.setState({
-        version: localStorage.getItem('version')
-      })
-    }
+		if (version !== localStorage.getItem('version')) {
+			this.setState({
+				version: localStorage.getItem('version')
+			})
 
-    if (packages !== localStorage.getItem('package')) {
-      this.setState({
-        packages: localStorage.getItem('package')
-      })
-    }
-  }
+			Notifications.notify()
+		}
 
-  render () {
-    return (
-      <div>
-        <div className={'navigate-toolbar'}>
-          <Internet/>
-          {this.state.version && <Version/>}{this.state.packages && <Package/>}
-        </div>
-        <div className="flex-center position-ref full-height">
-          <div className="content">
-            <Logo/>
-            <Title/>
-            <GroupOne/>
-            <GroupTwo/>
-          </div>
-          <Slogan/>
-        </div>
-      </div>
-    )
-  }
+		if (packages !== localStorage.getItem('package')) {
+			this.setState({
+				packages: localStorage.getItem('package')
+			})
+		}
+	}
+
+	render () {
+		return (
+			<div>
+				<div className={'navigate-toolbar'}>
+					<Internet/>
+					{this.state.version && <Version/>}{this.state.packages && <Package/>}
+				</div>
+				<div className="flex-center position-ref full-height">
+					<div className="content">
+						<Logo/>
+						<Title/>
+						<GroupOne/>
+						<GroupTwo/>
+					</div>
+					<Slogan/>
+				</div>
+			</div>
+		)
+	}
 }

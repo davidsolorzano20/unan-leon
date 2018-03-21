@@ -11,8 +11,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import swal from 'sweetalert'
 import localStorage from 'mobx-localstorage'
-import { SERVER_URL, VERSION_API } from '../../config/config'
-import Notifications from '../../component/notifications/Notifications'
+import { API_TEST, SERVER_URL, VERSION_API } from '../../config/config'
 import { version} from '../../../version.json'
 
 const fetch = remote.require('electron-fetch')
@@ -24,27 +23,20 @@ let online
 let archivePath
 let packages
 let versionApp
+let version_app
 
 export default class ServerApi {
 
 	static Version () {
 		const db = firebase.database()
-		const version_app = db.ref().child('version')
+		if (API_TEST) {
+			version_app = db.ref().child('test')
+		} else {
+			version_app = db.ref().child('version')
+		}
 		version_app.on('value', snap => {
-			if (version !== snap.val()) {
-				if (process.platform === 'win32') {
-					Notifications.win()
-				}
-				else if (process.platform === 'darwin') {
-					Notifications.macOS()
-				}
-				else {
-					Notifications.linux()
-				}
-
-				localStorage.setItem('version', snap.val())
-				versionApp = snap.val()
-			}
+			localStorage.setItem('version', snap.val())
+			versionApp = snap.val()
 		})
 	}
 
