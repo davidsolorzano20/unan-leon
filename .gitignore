@@ -25,4 +25,4 @@ Application/
 plugins
 build
 build:version
-out/
+releases/

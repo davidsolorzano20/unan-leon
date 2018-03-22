@@ -4,7 +4,7 @@
 import {app, BrowserWindow, shell} from 'electron'
 import path from 'path'
 import fs from 'fs'
-import { version } from '../version/version'
+import version from '../version/version'
 import windowStateKeeper from 'electron-window-state'
 
 let mainWindow
