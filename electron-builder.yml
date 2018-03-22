@@ -1,6 +1,6 @@
 directories:
   app: ./build
-  output: ./out
+  output: ./releases
 
 appId: "com.thunderweb.unanleon"
 asar: false

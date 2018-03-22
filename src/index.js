@@ -1,16 +1,11 @@
 /**
  * By Luis Solorzano
  */
-
-const electron = require('electron')
-const app = electron.app
-const Menu = electron.Menu
-const BrowserWindow = electron.BrowserWindow
-const shell = electron.shell
-const path = require('path')
-const fs = require('fs')
-const version = require('../version/version')
-const windowStateKeeper = require('electron-window-state')
+import {app, BrowserWindow, shell} from 'electron'
+import path from 'path'
+import fs from 'fs'
+import { version } from '../version/version'
+import windowStateKeeper from 'electron-window-state'
 
 let mainWindow
 let isQuitting = false
@@ -79,7 +74,7 @@ function createWindow () {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   }
 
-  mainWindow.webContents.openDevTools()
+ // mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('new-window', (e, url) => {
     e.preventDefault()
     shell.openExternal(url)
