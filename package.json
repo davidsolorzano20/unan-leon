@@ -20,9 +20,10 @@
     "Leon"
   ],
   "dependencies": {
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
+    "@babel/preset-react": "7.0.0-beta.40",
     "auto-launch": "^5.0.5",
-    "babel-register": "^6.26.0",
-    "cross-env": "^5.1.4",
     "electron-fetch": "^1.1.0",
     "electron-window-state": "^4.1.1",
     "firebase": "^4.11.0",
@@ -40,15 +41,21 @@
     "react-router": "^3.2.0",
     "semver": "^5.5.0",
     "sweetalert": "^2.1.0",
-    "tar": "^4.4.0"
+    "tar": "^4.4.0",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
+    "@babel/cli": "7.0.0-beta.40",
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/plugin-transform-runtime": "7.0.0-beta.40",
+    "@babel/polyfill": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/register": "7.0.0-beta.40",
+    "cross-env": "^5.1.4",
+    "cz-conventional-changelog": "^2.1.0",
+    "del": "^3.0.0",
+    "dotenv": "^5.0.1",
     "electron": "^1.8.3",
     "electron-builder": "19.56.2",
     "electron-installer-debian": "^0.8.1",
@@ -56,19 +63,25 @@
     "electron-prebuilt": "^1.4.13",
     "electron-rebuild": "^1.6.0",
     "electron-squirrel-startup": "^1.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^8.0.0-beta.2",
-    "gulp-less": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.4"
+    "gulp-clean-css": "^3.9.3",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-variables": "^1.1.1",
+    "gulp-server-livereload": "^1.9.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "node-sass": "^4.7.2"
   },
   "scripts": {
-    "app": "electron src/index.js",
-    "mac": "electron-packager . UNAN-León-Application --overwrite --no-prune --platform=darwin  --arch=x64 --out=Application --icon=src/assets/img/logo.icns",
-    "linux": "electron-packager . unan --overwrite --no-prune --platform=linux --out=Application",
-    "linux-deb": "electron-installer-debian --src Application/unan-linux-amd64/ --dest Application/installers/ --arch amd64",
-    "win": "electron-packager . unan --overwrite --no-prune --platform=win32 --out=out --arch=x64 --icon=builder-app/resources/logo.ico",
-    "win-exe": "electron-installer-windows --src=Application/unan-win32-x64/ --dest=Application/installers/ --arch=amd64",
-    "build-win64": "electron-packager . \"$npm_package_productName\" --overwrite --out=dist --prune --platform=win32 --arch=x64 --icon=builder-app/resources/logo.ico --version=$npm_package_electronVersion --version-string.ProductName=\"$npm_package_productName\" --version-string.FileDescription=\"$npm_package_description\" --version-string.LegalCopyright=\"$npm_package_license\" --version-string.ProductVersion=$npm_package_version && cd \"dist/$npm_package_productName-win32-x64/\" && mv $npm_package_name.exe \"$npm_package_productName.exe\" && zip -ryq9 \"../$npm_package_productName-win-x64-$npm_package_version.zip\" *",
+    "start": "electron ./build",
+    "dev": "cross-env NODE_ENV=development gulp dev",
+    "local": "cross-env LOCAL_API=1 gulp start",
+    "prebuild": "gulp build",
     "build": "electron-builder --publish onTag"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

@@ -21,10 +21,9 @@ export default class Version extends Component {
         <div className="info-bar__content">
           <span className={'offline'}>
             <i className={'fal fa-info-circle fal-lg info'}/>
-            Hay una nueva versi&oacute;n de UNAN-Le&oacute;n Desktop App.
+            Hay una nueva versi&oacute;n de UNAN Desktop App.
             <span className={'btn-download'} onClick={this._update}>
-              Descargar
-              <i className="fal fa-cloud-download"/>
+              Actualizar <i className="fal fa-cloud-download"/>
             </span>
           </span>
         </div>

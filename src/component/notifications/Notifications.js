@@ -1,32 +1,44 @@
 import React from 'react'
-import appId, { ToastNotification } from 'electron-windows-notifications'
+import notifier from 'node-notifier'
+import path from 'path'
 import { version } from '../../../version'
 
-let notify
+let WindowsToaster = notifier.WindowsToaster
 
 export default class Notifications {
 
 	static win () {
-		notify = new ToastNotification({
-			appId: appId,
-			template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
-			strings: ['Hi!']
+		const notify = new WindowsToaster({
+			withFallback: true,
+			customPath: void 0
 		})
 
-		//notify.on('activated', () => console.log('Activated!'))
-		//notify.show()
+		notify.notify({
+			title: 'UNAN Desktop App',
+			message: 'Hola, Tienes una nueva Actualización',
+			icon: path.join(__dirname, '../../assets/img/logo.ico'),
+			sound: true,
+			wait: true,
+			id: 1,
+			timeout: 5,
+			sticky: true
+		},
+			function (error, response) {
+				console.log(response, error)
+		})
 	}
 
 	static macOS () {
 		new Notification('UNAN Desktop App', {
-			body: 'Tienes una nueva Actualizacion',
+			body: 'Hola, Tienes una nueva Actualización',
 			hasReply: true
 		})
 	}
 
 	static linux () {
 		new Notification('UNAN Desktop App', {
-			body: 'Tienes una nueva Actualizacion',
+			body: 'Hola, Tienes una nueva Actualización',
+			icon: path.join(__dirname, '../../assets/img/logo.ico'),
 			hasReply: true
 		})
 	}

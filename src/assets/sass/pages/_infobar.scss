@@ -1,0 +1,93 @@
+/**
+ * By Luis Solorzano
+ */
+
+.info-bar {
+	top: 0;
+	position: $position-absolute;
+	width: $display-full-width;
+	height: 50px;
+	background: $color-transparent;
+	display: $display-flex;
+	align-items: $text-align-center;
+	justify-content: $text-align-center;
+	z-index: $z-index-100;
+	box-shadow: $color-info-bar-shadow;
+
+	.info-bar__content {
+		font-weight: $font-weight-initial;
+		height: $height-auto;
+		.offline {
+			margin-left: 10px;
+			i.info {
+				margin-right: 5px;
+				font-weight: 900;
+			}
+		}
+	}
+
+	.info-bar__close {
+		position: $position-absolute;
+		right: 10px;
+		color: $color-primary-text;
+	}
+
+	.info-bar__cta {
+		color: $color-primary-text;
+		padding: 3px 8px;
+		border-radius: 3px;
+		border-color: $color-primary-text;
+		border-width: 2px;
+		border-style: solid;
+		margin-left: 15px;
+
+		.loader {
+			position: $position-relative;
+			width: 20px;
+			height: 12px;
+			z-index: $z-index-9999;
+			display: $display-inline-block;
+			margin-right: 5px;
+		}
+	}
+
+	&.info-bar--success {
+		background: $color-info-bar-success;
+		color: $color-primary-text;
+
+		a {
+			color: $color-primary-text;
+		}
+	}
+
+	&.info-bar--primary {
+		background: $color-info-bar-primary;
+		color: $color-primary-text;
+
+		a {
+			color: $color-primary-text;
+		}
+	}
+
+	&.info-bar--warning {
+		background: $color-info-bar-warning;
+		color: $color-primary-text;
+
+		a {
+			color: $color-primary-text;
+		}
+	}
+
+	&.info-bar--danger {
+		background: $color-info-bar-danger;
+		color: $color-primary-text;
+
+		a {
+			color: $color-primary-text;
+		}
+	}
+
+	.offline {
+		text-decoration: $display-none;
+	}
+}

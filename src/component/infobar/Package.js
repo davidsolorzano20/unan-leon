@@ -22,7 +22,7 @@ export default class Package extends Component {
         <div className="info-bar__content">
           <a href={"https://github.com/davidsolorzano20/unan-leon/releases"} target={'_blank'} className={'offline'}>
             <i className={'fal fa-info-circle fal-lg info'}/>
-            UNAN-Le&oacute;n Desktop App necesita volverse a descargar, Paquetes Obsoletos.
+            UNAN Desktop App necesita volverse a descargar, Paquetes Obsoletos.
             <span className={'btn-download'} onClick={this._package}>
               Descargar
               <i className="fal fa-cloud-download"/>

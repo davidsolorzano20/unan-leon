@@ -19,6 +19,7 @@ import fs from 'fs'
 import fse from 'fs-extra'
 import path from 'path'
 import Notifications from '../notifications/Notifications'
+const NotificationCenter = require('node-notifier').NotificationCenter;
 
 let remove
 

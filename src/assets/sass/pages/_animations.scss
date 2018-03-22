@@ -3,13 +3,13 @@
  */
 
 .swal-icon--error__line {
-	background-color: @color-title-modal;
+	background-color: $color-title-modal;
 }
 
 .swal-icon--error {
-	border-color: @display-inherit;
-	-webkit-animation: @display-inherit;
-	animation: @display-inherit;
+	border-color: $display-inherit;
+	-webkit-animation: $display-inherit;
+	animation: $display-inherit;
 }
 
 .swal-icon--error__line--top {
@@ -35,12 +35,12 @@
 }
 
 .swal-overlay--show-modal {
-	pointer-events: @display-none;
+	pointer-events: $display-none;
 }
 
 .swal-icon--error__x-mark {
 	position: relative;
-	display: @display-block;
+	display: $display-block;
 	-webkit-animation: download-spin infinite 1.2s alternate;
 	animation: download-spin infinite 1.2s alternate;
 }

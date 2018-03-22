@@ -3,62 +3,128 @@
  */
 
 'use strict'
+
 import gulp from 'gulp'
-import less from 'gulp-less'
-import sourcemaps from 'gulp-sourcemaps'
+import sass from 'gulp-sass'
+import babel from 'gulp-babel'
+import del from 'del'
+import cleanCSS from 'gulp-clean-css'
+import server from 'gulp-server-livereload';
+import config from './package.json'
 
-const path = './'
-const input = 'src/assets/less/style.less'
-const output = 'src/assets/css'
-const build = 'build'
-const build_app = 'build:version'
-const react = 'src'
+const paths = {
+	dest: 'build',
+	src: 'src',
+	package: `out/${config.version}`,
+	html: {
+		src: 'src/**/*.html',
+		dest: 'build/src',
+		watch: 'src/**/*.html',
+	},
+	styles: {
+		src: 'src/assets/sass/style.scss',
+		dest: 'build/src/assets/css',
+		watch: 'src/assets/sass/**/*.scss',
+	},
+	fonts: {
+		src: 'src/assets/fonts/*',
+		dest: 'build/src/assets/fonts',
+	},
+	images: {
+		src: 'src/assets/img/*',
+		dest: 'build/src/assets/img',
+	},
+	scripts: {
+		src: 'src/**/*.js',
+		dest: 'build/src',
+		watch: 'src/**/*.js',
+	},
+	version: {
+		src: 'version/*.json',
+		dest: 'build/version',
+		watch: 'version/*.json',
+	},
+	packages: {
+		src: './*.json',
+		dest: 'build/version',
+		watch: 'version/*.json',
+	},
+}
 
-gulp.task('prod', function () {
-	return gulp
-		.src(input)
-		.pipe(less({
-			errLogToConsole: true,
-			outputStyle: 'compressed'
-		}))
-		.pipe(gulp.dest(output))
-})
+export const clean = () => del(['assets'])
 
-gulp.task('dev', function () {
-	return gulp
-		.src(input)
-		.pipe(sourcemaps.init())
-		.pipe(less({
+export function styles () {
+	return gulp.src(paths.styles.src)
+		.pipe(sass({
 			errLogToConsole: true,
 			outputStyle: 'nested'
-		}))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(output))
-})
+		}).on('error', sass.logError))
+		.pipe(cleanCSS())
+		.pipe(gulp.dest(paths.styles.dest))
+}
 
-gulp.task('watch', function () {
-	return gulp
-		.watch('./src/assets/less/**/*', ['prod'])
-		.on('change', function (event) {
-			console.log('File ' + event.path + ' was ' + event.type + ', running tasks...')
-		})
-})
+export function scripts () {
+	return gulp.src(paths.scripts.src, {sourcemaps: false})
+		.pipe(babel())
+		.pipe(gulp.dest(paths.scripts.dest))
+}
 
-gulp.task('src', function () {
-	return gulp.src([path + 'src/**/*', '!./src/index.js', '!./src/assets/less/**'])
-		.pipe(gulp.dest(path + build_app + '/' + react))
-})
+export function html () {
+	return gulp.src(paths.html.src)
+		.pipe(gulp.dest(paths.html.dest))
+}
 
-gulp.task('version', function () {
-	return gulp.src([path + '/*.json', '!./package-lock.json'])
-		.pipe(gulp.dest(path + build_app))
-})
+export function version () {
+	return gulp.src(paths.version.src)
+		.pipe(gulp.dest(paths.version.dest))
+}
 
-gulp.task('app', function () {
-	return gulp.src([path + '**', '!./node_modules/**', '!./gulpfile.babel.js', '!./package-lock.json', '!./sweetalert.min.js', '!./electron-builder.yml', '!./.gitignore', '!./README.md'], {base: path})
-		.pipe(gulp.dest(path + build))
-})
+export function fonts () {
+	return gulp.src(paths.fonts.src)
+		.pipe(gulp.dest(paths.fonts.dest))
+}
 
-gulp.task('build:version', ['src', 'version'])
-gulp.task('build:app', ['app'])
-gulp.task('default', ['prod'])
+export function images () {
+	return gulp.src(paths.images.src)
+		.pipe(gulp.dest(paths.images.dest))
+}
+
+export function src () {
+	return gulp.src(
+		[
+			`${paths.src}/*`,
+			`${paths.src}/*/**`,
+			`!${paths.scripts.watch}`,
+			`!${paths.src}/assets/sass/**`,
+		], {since: gulp.lastRun(src)})
+		.pipe(gulp.dest(paths.dest))
+}
+
+export function mvpackage () {
+	return gulp.src(
+		[
+			'./package.json',
+			'./version.json',
+		])
+		.pipe(gulp.dest(paths.dest))
+}
+
+export function watch () {
+	gulp.watch(paths.scripts.src, scripts)
+	gulp.watch(paths.styles.src, styles)
+}
+
+export function webserver() {
+	gulp.src([
+		paths.dest,
+	])
+		.pipe(server({
+			livereload: true,
+		}));
+}
+
+const build = gulp.series(clean, gulp.parallel(mvpackage), gulp.parallel(html, fonts, images, styles, scripts, version))
+export default build
+
+const dev = gulp.series(build, gulp.parallel(webserver, watch))
+export { dev }
