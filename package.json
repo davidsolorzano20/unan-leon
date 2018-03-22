@@ -2,7 +2,7 @@
   "name": "unanleon",
   "appId": "com.thunderweb.unanleon",
   "productName": "UNAN Desktop App",
-  "version": "2.1.0",
+  "version": "3.1.0",
   "author": "Luis Solórzano <luisnic20@gmail.com>",
   "copyright": "Student Contribution",
   "description": "UNAN-León Application by created Luis Solórzano",
@@ -76,7 +76,7 @@
     "start": "electron ./build",
     "dev": "cross-env NODE_ENV=development gulp dev",
     "local": "cross-env LOCAL_API=1 gulp start",
-    "prebuild": "gulp build",
+    "prebuild": "gulp",
     "build": "electron-builder --publish onTag"
   },
   "config": {
