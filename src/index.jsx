@@ -51,7 +51,7 @@ function createWindow () {
     minheight: 700,
     x: mainWindowState.x,
     y: mainWindowState.y,
-    icon: path.join(__dirname, 'resources/logo.png'),
+    icon: path.join(__dirname, '/assets/img/app.png'),
     backgroundColor: '#ffffff',
   })
 
