@@ -3,7 +3,6 @@
  */
 
 import React, { Component } from 'react'
-import ReactGA from 'react-ga'
 import Internet from '../infobar/Internet'
 import GroupOne from '../ui/links/group-one/GroupOne'
 import GroupTwo from '../ui/links/group-two/GroupTwo'
@@ -19,7 +18,7 @@ import fs from 'fs'
 import fse from 'fs-extra'
 import path from 'path'
 import Notifications from '../notifications/Notifications'
-const NotificationCenter = require('node-notifier').NotificationCenter;
+import { gaPage } from '../../google/analytics'
 
 let remove
 
@@ -30,11 +29,10 @@ export default class App extends Component {
 			version: '',
 			packages: ''
 		}
-		ReactGA.initialize('UA-114998845')
-		ReactGA.pageview(window.location.pathname + window.location.search)
 	}
 
 	componentDidMount () {
+		gaPage('/')
 		const version_after = (localStorage.getItem('version') - 1)
 		remove = path.join(__dirname, '../../../../' + version_after)
 		if (fs.existsSync(remove)) {

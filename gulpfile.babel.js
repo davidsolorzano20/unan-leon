@@ -34,6 +34,11 @@ const paths = {
 		src: 'src/assets/img/*',
 		dest: 'build/src/assets/img',
 	},
+	reactjs: {
+		src: 'src/**/*.jsx',
+		dest: 'build/src',
+		watch: 'src/**/*.jsx',
+	},
 	scripts: {
 		src: 'src/**/*.js',
 		dest: 'build/src',
@@ -69,6 +74,12 @@ export function scripts () {
 		.pipe(gulp.dest(paths.scripts.dest))
 }
 
+export function reactjs () {
+	return gulp.src(paths.reactjs.src, {sourcemaps: false})
+		.pipe(babel())
+		.pipe(gulp.dest(paths.reactjs.dest))
+}
+
 export function html () {
 	return gulp.src(paths.html.src)
 		.pipe(gulp.dest(paths.html.dest))
@@ -95,6 +106,7 @@ export function src () {
 			`${paths.src}/*`,
 			`${paths.src}/*/**`,
 			`!${paths.scripts.watch}`,
+			`!${paths.reactjs.watch}`,
 			`!${paths.src}/assets/sass/**`,
 		], {since: gulp.lastRun(src)})
 		.pipe(gulp.dest(paths.dest))
@@ -111,7 +123,9 @@ export function mvpackage () {
 
 export function watch () {
 	gulp.watch(paths.scripts.src, scripts)
+	gulp.watch(paths.reactjs.src, reactjs)
 	gulp.watch(paths.styles.src, styles)
+	gulp.watch(paths.html.src, html)
 }
 
 export function webserver() {
@@ -123,7 +137,7 @@ export function webserver() {
 		}));
 }
 
-const build = gulp.series(clean, gulp.parallel(mvpackage), gulp.parallel(html, fonts, images, styles, scripts, version))
+const build = gulp.series(clean, gulp.parallel(mvpackage), gulp.parallel(html, fonts, images, styles, scripts, reactjs, version))
 export default build
 
 const dev = gulp.series(build, gulp.parallel(webserver, watch))

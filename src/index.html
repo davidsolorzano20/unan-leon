@@ -10,10 +10,43 @@
 	<script crossorigin="anonymous" src="./app.js"></script>
 	<title>UNAN Desktop App</title>
 </head>
-<body class="darwin">
+<body>
+<!--<div class="dev-warning">DEVELOP MODE</div>-->
 <div class="window-draggable"></div>
 <div id="root"></div>
-
 <a href="#/" class="home"><i class="fal fa-home fa-2x"></i></a>
+
+<script>
+	const electron = require('electron').remote
+	document.querySelector('body').classList.add(process.platform);
+
+	const { DEV } = require('./config/environment');
+	if (DEV) {
+		document.querySelector('body').classList.add('dev');
+
+		(function() {
+			const host = 'http://localhost:35729';
+			const script = document.createElement('script');
+			script.async = true;
+			script.setAttribute('crossorigin', 'anonymous');
+			script.setAttribute('src', host + '/livereload.js');
+			document.body.appendChild(script);
+
+			script.onload = () => {
+				console.log('livereload loaded');
+				const originalReloadBehaviour = window._onLiveReloadFileChanged;
+
+				window._onLiveReloadFileChanged = (file) => {
+					if (!file.path.includes('/build/index.js')) {
+						originalReloadBehaviour(file);
+					} else {
+						electron.getCurrentWindow().reload();
+						console.log('Livereload: Reloading');
+					}
+				}
+			}
+		})();
+	}
+</script>
 </body>
 </html>

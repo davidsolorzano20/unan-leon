@@ -34,7 +34,7 @@ const isSecondInstance = app.makeSingleInstance((argv) => {
 })
 
 if (isSecondInstance) {
-  console.log('An instance of UNAN-León is already running. Exiting...')
+  console.log('An instance of UNAN is already running. Exiting...')
   app.exit()
 }
 
@@ -51,7 +51,7 @@ function createWindow () {
     minheight: 700,
     x: mainWindowState.x,
     y: mainWindowState.y,
-    icon: process.platform === 'linux' && path.join(__dirname, 'assets/img/logo.png'),
+    icon: path.join(__dirname, 'assets/img/logo.png'),
     backgroundColor: '#ffffff',
   })
 
@@ -74,7 +74,7 @@ function createWindow () {
     mainWindow.loadURL(`file://${__dirname}/index.html`)
   }
 
- // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('new-window', (e, url) => {
     e.preventDefault()
     shell.openExternal(url)

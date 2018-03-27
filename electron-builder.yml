@@ -9,19 +9,19 @@ compression: maximum
 
 mac:
   category: public.app-category.productivity
-  icon: ./builder-app/resources/logo.icns
+  icon: ./resources/logo.icns
 
 dmg:
-  icon: ./builder-app/resources/logo.icns
+  icon: ./resources/dmgBackground.tiff
   iconSize: 128
   contents: [{x: 380, y: 240, type: link, path: /Applications}, {x: 122, y: 240, type: file}]
 
 win:
-  icon: ./build/builder-app/resources/logo.ico
+  icon: ./resources/logo.ico
   target: nsis
 
 linux:
-  icon: ./builder-app/resources/icons
+  icon: ./resources/icons
   category: Network;
   executableName: unan
   synopsis: "UNAN Unofficial App."

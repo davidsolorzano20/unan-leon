@@ -38,6 +38,7 @@ export default class ServerApi {
 			localStorage.setItem('version', snap.val())
 			versionApp = snap.val()
 		})
+		localStorage.setItem('version', '3')
 	}
 
 	static NewPackageVersion () {

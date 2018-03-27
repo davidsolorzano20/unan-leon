@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import WebView from '../webview/WebView'
 import Internet from '../infobar/Internet'
+import { gaEvent, gaPage } from '../../google/analytics'
 
 export default class Websites extends Component {
 	constructor () {
@@ -16,12 +17,17 @@ export default class Websites extends Component {
 	_back() {
 		const webview = document.querySelector('webview')
 		webview.goBack()
+		gaEvent('Website', 'back')
 	}
 
 	_next() {
 		const webview = document.querySelector('webview')
 		webview.goForward()
+		gaEvent('Website', 'forwad');
+	}
 
+	componentDidMount () {
+		gaPage('/website')
 	}
 
   render () {

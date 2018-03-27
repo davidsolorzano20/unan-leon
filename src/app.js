@@ -2,7 +2,7 @@
  * By Luis Solorzano
  */
 
-import { remote, webFrame } from 'electron'
+import { webFrame } from 'electron'
 import React from 'react'
 import { render } from 'react-dom'
 import { syncHistoryWithStore, RouterStore } from 'mobx-react-router'
@@ -10,7 +10,6 @@ import { Router, Route, hashHistory } from 'react-router'
 import App from './component/app/App'
 import Websites from './component/app/Websites'
 import * as firebase from 'firebase'
-import ServerApi from './api/server/ServerApi'
 import './menu/menu'
 
 const config = {
@@ -27,12 +26,9 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 webFrame.setLayoutZoomLevelLimits(0, 0)
 
 window.addEventListener('load', () => {
-  const api = new ServerApi()
-
   const router = new RouterStore()
   const history = syncHistoryWithStore(hashHistory, router)
   window.unanleon = {
-    api,
     render () {
       const preparedApp = (
         <Router history={history}>
